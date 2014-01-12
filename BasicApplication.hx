@@ -2,7 +2,12 @@ package ;
 import away3d.cameras.Camera3D;
 import away3d.containers.Scene3D;
 import away3d.containers.View3D;
+import away3d.core.managers.Stage3DManager;
+import away3d.core.managers.Stage3DProxy;
 import away3d.debug.AwayStats;
+import away3d.materials.MaterialBase;
+import flash.display3D.Context3DCompareMode;
+//import away3d.debug.AwayStats;
 import away3d.events.Stage3DEvent;
 import away3d.textures.BitmapTexture;
 import flash.display.BitmapData;
@@ -28,19 +33,21 @@ using OpenFLStage3D;
  * @author 
  */
 class BasicApplication extends Sprite {
-	static function main() {
-        var v:BasicApplication = new BasicApplication();
-        Lib.current.addChild(v);
-    }
+ 
     private var  _plane: Mesh;
 //engine variables
     private var view:View3D;
     private var scene:Scene3D;
     private var camera:Camera3D;
-    private var awayStats:AwayStats;
+	private var awayStats:AwayStats;
 
+  	private var _stage3DManager:Stage3DManager; 
+	private var _stage3DProxy:Stage3DProxy;
+	
+	private var rotY:Float;
     public function new() {
-        super();
+        super(); 
+		rotY = 0;
 		//new Run();
         this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
     }
@@ -51,50 +58,51 @@ class BasicApplication extends Sprite {
     }
 
     private function init():Void { 
-        initEngine();
-        initObjects();
-        initListeners();
+		width = 800;
+		height = 480;
+        initEngine(); 
     }
-	private function initObjects():Void {
-//setup the scene
-        var material:ColorMaterial = new ColorMaterial(0xff0000);
-        _plane = new Mesh(new CubeGeometry(100, 100,100), material);
-        view.scene.addChild(_plane);
 
+	
+	private function initEngine():Void {
+        stage.scaleMode = StageScaleMode.NO_SCALE;  
+        stage.align = StageAlign.TOP_LEFT; 
+		_stage3DManager = Stage3DManager.getInstance(stage); 
+		_stage3DProxy = _stage3DManager.getFreeStage3DProxy();
  
-        var sphere:Mesh = new Mesh(new SphereGeometry(100, 40, 20), material);
-        sphere.x = 200;
-        sphere.y = 0;
-        sphere.z = 0;
-
-        view.scene.addChild(sphere);
-		 
-    }
-
-
-/**
-         * Initialise the engine
-         */
-
-    private function initEngine():Void {
-        stage.scaleMode = StageScaleMode.NO_SCALE;
-        stage.align = StageAlign.TOP_LEFT;
-
-        view = new View3D();
-        addChild(view);
+		
+		view = new View3D();  
+		view.stage3DProxy = _stage3DProxy;
+	
+        //addChild(view);
+	 
+     
         scene = view.scene;
         camera = view.camera;
 
-        awayStats = new AwayStats(view); 
-        addChild(awayStats);
+       // awayStats = new AwayStats(view);  
+       // addChild(awayStats);
 		view.camera.z = -600;
         view.camera.y = 500;
         view.camera.lookAt(new Vector3D());
-       
+ 
+        initObjects();
+		
+        initListeners();
+		
+		 
+	 
 	}
-/**
-         * Initialise the listeners
-         */
+	private function initObjects():Void {
+//setup the scene
+       var logo = openfl.Assets.getBitmapData("assets/hxlogo.png"); 
+        var material:TextureMaterial =new TextureMaterial(new BitmapTexture(logo),false);
+		  
+        _plane = new Mesh(new CubeGeometry(100, 100,100), material);
+        view.scene.addChild(_plane);  
+		 
+    }
+ 
 
     private function initListeners():Void {
         addEventListener(Event.ENTER_FRAME, onEnterFrame);
@@ -107,10 +115,14 @@ class BasicApplication extends Sprite {
          */
 
     private function onEnterFrame(event:Event):Void {
+		//removeEventListener(Event.ENTER_FRAME, onEnterFrame);
         render();
     }
+	
 
     public function   render():Void {
+		rotY += 1;
+		_plane.rotationY = rotY;
         view.render();
     }
 
@@ -119,7 +131,10 @@ class BasicApplication extends Sprite {
          */
 
     private function onResize(event:Event = null):Void {
-        view.setSizeWH ( stage.stageWidth,stage.stageHeight);
-        awayStats.x = stage.stageWidth - awayStats.width;
+        view.x =  0;
+		view.y = 0;
+		view.width = stage.stageWidth;
+		view.height= stage.stageHeight;
+        //awayStats.x = stage.stageWidth - awayStats.width;
     }
 }
