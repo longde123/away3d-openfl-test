@@ -29,7 +29,7 @@ using OpenFLStage3D;
  */
 class BasicApplication extends Sprite {
 	static function main() {
-        var v:Basic_View = new Basic_View();
+        var v:BasicApplication = new BasicApplication();
         Lib.current.addChild(v);
     }
     private var  _plane: Mesh;
