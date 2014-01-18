@@ -54,9 +54,7 @@ package;
 	import flash.geom.*;
 	import flash.utils.*;
 
-	import flash.Lib;
-import away3d.core.managers.Stage3DManager;
-import away3d.core.managers.Stage3DProxy;
+	import flash.Lib; 
 @:bitmap("embeds/trinket_diffuse.jpg") class TrinketDiffuse extends BitmapData {}
 @:bitmap("embeds/trinket_specular.jpg") class TrinketSpecular extends BitmapData {}
 @:bitmap("embeds/trinket_normal.jpg") class TrinketNormals extends BitmapData {}
@@ -135,9 +133,7 @@ import away3d.core.managers.Stage3DProxy;
 		private var lastPanAngle:Float;
 		private var lastTiltAngle:Float;
 		private var lastMouseX:Float;
-		private var lastMouseY:Float;
-		private var _stage3DManager:Stage3DManager; 
-		private var _stage3DProxy:Stage3DProxy;
+		private var lastMouseY:Float; 
 		/**
 		 * Constructor
 		 */
@@ -170,14 +166,10 @@ import away3d.core.managers.Stage3DProxy;
 			
 			scene = new Scene3D();
 			
-			camera = new Camera3D();
-
-			_stage3DManager = Stage3DManager.getInstance(stage); 
-			_stage3DProxy = _stage3DManager.getFreeStage3DProxy();
+			camera = new Camera3D(); 
  
 		
-			view = new View3D();  
-			view.stage3DProxy = _stage3DProxy;
+			view = new View3D();   
 			view.antiAlias = 4;
 			view.scene = scene;
 			view.camera = camera;

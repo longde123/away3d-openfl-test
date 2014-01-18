@@ -48,9 +48,7 @@ package;
 	
 	import flash.display.*;
 	import flash.events.*;
-	import flash.geom.Vector3D;
-import away3d.core.managers.Stage3DManager;
-import away3d.core.managers.Stage3DProxy;
+	import flash.geom.Vector3D; 
 @:bitmap("embeds/skybox/snow_negative_x.jpg") class EnvNegX extends BitmapData {}
 @:bitmap("embeds/skybox/snow_negative_y.jpg") class EnvNegY extends BitmapData {}
 @:bitmap("embeds/skybox/snow_negative_z.jpg") class EnvNegZ extends BitmapData {}
@@ -81,9 +79,7 @@ import away3d.core.managers.Stage3DProxy;
 		
 		//scene objects
 		private var _skyBox:SkyBox; 
-		private var _torus:Mesh;
-		private var _stage3DManager:Stage3DManager; 
-		private var _stage3DProxy:Stage3DProxy;
+		private var _torus:Mesh; 
 		/**
 		 * Constructor
 		 */
@@ -99,8 +95,7 @@ import away3d.core.managers.Stage3DProxy;
 			_stage3DProxy = _stage3DManager.getFreeStage3DProxy();
  
 		
-			_view = new View3D();   
-			_view.stage3DProxy = _stage3DProxy;
+			_view = new View3D();    
 			//setup the camera
 			_view.camera.z = -600;
 			_view.camera.y = 0;

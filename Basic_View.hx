@@ -68,8 +68,6 @@ class Basic_View extends Sprite
 	
 	//scene objects
 	private var _plane:Mesh;
-	private var _stage3DManager:Stage3DManager; 
-	private var _stage3DProxy:Stage3DProxy;
 
 	/**
 	 * Constructor
@@ -80,12 +78,9 @@ class Basic_View extends Sprite
 		stage.scaleMode = StageScaleMode.NO_SCALE;
 		stage.align = StageAlign.TOP_LEFT;
 
-		_stage3DManager = Stage3DManager.getInstance(stage); 
-		_stage3DProxy = _stage3DManager.getFreeStage3DProxy();
  
 		
 		_view = new View3D();  
-		_view.stage3DProxy = _stage3DProxy;
 		//addChild(_view);
 		
 		//setup the camera
