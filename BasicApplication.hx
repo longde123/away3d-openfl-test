@@ -39,10 +39,7 @@ class BasicApplication extends Sprite {
     private var view:View3D;
     private var scene:Scene3D;
     private var camera:Camera3D;
-	private var awayStats:AwayStats;
-
-  	private var _stage3DManager:Stage3DManager; 
-	private var _stage3DProxy:Stage3DProxy;
+	private var awayStats:AwayStats; 
 	
 	private var rotY:Float;
     public function new() {
@@ -66,13 +63,10 @@ class BasicApplication extends Sprite {
 	
 	private function initEngine():Void {
         stage.scaleMode = StageScaleMode.NO_SCALE;  
-        stage.align = StageAlign.TOP_LEFT; 
-		_stage3DManager = Stage3DManager.getInstance(stage); 
-		_stage3DProxy = _stage3DManager.getFreeStage3DProxy();
+        stage.align = StageAlign.TOP_LEFT;  
  
 		
-		view = new View3D();  
-		view.stage3DProxy = _stage3DProxy;
+		view = new View3D();   
 	
         //addChild(view);
 	 
