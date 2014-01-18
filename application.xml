@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<!-- NMML reference: https://gist.github.com/1763850 -->
+	
+	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
+	<meta title="Away3d" package="away" version="1.0.0" company="" />
+	
+	<!-- output -->
+	<app main="Basic_View" file="away" path="bin" />
+	
+	<window background="#000000" fps="60" />
+	<window width="800" height="500" unless="mobile" />
+	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
+	
+	<!-- classpath, haxe libs -->
+	<source path="src" />
+	<haxelib name="openfl" />
+	<haxelib name="actuate" />
+	
+	<!-- assets --> 
+	 <assets path="assets"   include="*.*"/> 
+	<!-- optimize output
+	<haxeflag name="-dce full" /> -->
+	
+</project>
