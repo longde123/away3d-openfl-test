@@ -90,9 +90,7 @@ package;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			
-			//setup the view
-			_stage3DManager = Stage3DManager.getInstance(stage); 
-			_stage3DProxy = _stage3DManager.getFreeStage3DProxy();
+			//setup the view 
  
 		
 			_view = new View3D();    

@@ -40,6 +40,7 @@ package;
 
 import away3d.containers.View3D;
 import away3d.entities.Mesh;
+import away3d.materials.ColorMaterial;
 import away3d.materials.TextureMaterial;
 import away3d.primitives.PlaneGeometry;
 import away3d.utils.Cast;
@@ -90,6 +91,7 @@ class Basic_View extends Sprite
 
 		//setup the scene
 		_plane = new Mesh(new PlaneGeometry(700, 700), new TextureMaterial(Cast.bitmapTexture(FloorDiffuse)));
+		//_plane = new Mesh(new PlaneGeometry(700, 700),new ColorMaterial());
 		_view.scene.addChild(_plane);
 		
 		//setup the render loop
@@ -108,8 +110,8 @@ class Basic_View extends Sprite
 	 */
 	private function _onEnterFrame(e:Event):Void
 	{
-		_plane.rotationY += 1;
-		
+		//removeEventListener(Event.ENTER_FRAME, _onEnterFrame);
+	 	_plane.rotationY += 1;
 		_view.render();
 	}
 	
